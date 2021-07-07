@@ -197,7 +197,7 @@ class Chassis(ChassisBase):
         eeprom_base = '/sys/bus/i2c/devices/{0}-0050/eeprom'
         for x in range(self.PORT_START, self.PORT_END + 1):
             eeprom_path = eeprom_base.format(self.port_to_i2cbus_mapping[x])
-            sfp_node = Sfp(x, 'QSFP', eeprom_path)
+            sfp_node = Sfp(x, 'QSFP', eeprom_path) #lgtm [py/call/wrong-number-class-arguments]
             self._sfp_list.append(sfp_node)
         
         if os.path.isfile(cmd):
@@ -206,24 +206,24 @@ class Chassis(ChassisBase):
         # Initialize  FanTray / FANs
         # for idx in range(1, NUM_FAN_TRAY + 1):
         for idx in range(1, NUM_FAN_TRAY + 1):
-            fandrawer = FanDrawer(idx)
+            fandrawer = FanDrawer(idx)  #lgtm [py/call/wrong-number-class-arguments]
             self._fan_drawer_list.append(fandrawer)
             self._fan_list.extend(fandrawer._fan_list)
         self._num_fans = 8
 
         # Initialize PSUs
         for idx in range(0, NUM_PSU):
-            psu_node = Psu(idx)
+            psu_node = Psu(idx)  #lgtm [py/call/wrong-number-class-arguments]
             self._psu_list.append(psu_node)
 
         # Initialize Thermal
         for idx in range(0, NUM_THERMAL):
-            thermal = Thermal(idx)
+            thermal = Thermal(idx)  #lgtm [py/call/wrong-number-class-arguments]
             self._thermal_list.append(thermal)
         
         # Initialize firmware components
         for idx in range(0, NUM_COMPONENT):
-            comp = Component(idx)
+            comp = Component(idx)  #lgtm [py/call/wrong-number-class-arguments]
             self._component_list.append(comp)
 
     def get_sfp(self, index):
@@ -237,14 +237,14 @@ class Chassis(ChassisBase):
     
     def get_change_event(self, timeout=2000):
         change_dict = {}
-        start_ms = time.time() * 1000
+        start_ms = time.time() * 1000 #lgtm [py/unused-local-variable]
         status, change_dict = sfp_detect()
         return status, change_dict
 
         if timeout:
             now_ms = time.time() * 1000
             if (now_ms - start_ms >= timeout):
-                return True, change_dict 
+                return True, change_dict #lgtm [py/unreachable-statement]
 		
 
     def get_name(self):

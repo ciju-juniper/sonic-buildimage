@@ -41,7 +41,6 @@ try:
     import logging.handlers
     import time
     import glob
-    import re
 except ImportError as e:
     raise ImportError('%s - required module not found' % str(e))
 

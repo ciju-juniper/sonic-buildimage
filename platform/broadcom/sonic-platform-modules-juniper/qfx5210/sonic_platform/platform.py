@@ -30,8 +30,6 @@
 # components is subject to the terms and conditions of the respective license
 # as noted in the Third-Party source code file.
 #
-import sys
-
 try:
     from sonic_platform_base.platform_base import PlatformBase
     from sonic_platform.chassis import Chassis

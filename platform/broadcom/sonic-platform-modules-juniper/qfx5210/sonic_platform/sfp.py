@@ -6,23 +6,15 @@
 # avaialble in the community
 #
 try:
-    import os
     import re
     import time
-    import sys
-    import io
-    import string
     from ctypes import create_string_buffer
-    import subprocess
-    import struct
-    import mmap
     from sonic_platform_base.sfp_base import SfpBase
     from sonic_platform_base.sonic_sfp.sff8436 import sff8436InterfaceId
     from sonic_platform_base.sonic_sfp.sff8436 import sff8436Dom
     from sonic_platform_base.sonic_sfp.sff8472 import sff8472InterfaceId
     from sonic_platform_base.sonic_sfp.sff8472 import sff8472Dom
     from sonic_platform_base.sonic_sfp.sff8472 import sffbase
-    from sonic_platform_base.sonic_sfp.sff8024 import type_of_media_interface
 
 except ImportError as e:
     raise ImportError(str(e) + "- required module not found")
@@ -758,7 +750,6 @@ class Sfp(SfpBase):
         """
         tx_bias_list = []
         try:
-            offset = 128
             if self.sfp_type == 'QSFP':
                 tx_bias_data = self._get_eeprom_data('ChannelMonitor')
                 for tx_bias_id in ('TX1Bias', 'TX2Bias', 'TX3Bias', 'TX4Bias'):
@@ -803,7 +794,6 @@ class Sfp(SfpBase):
         Retrieves the TX power of this SFP
         """
         tx_power_list = []
-        offset = 128
         try:
             if self.sfp_type == 'QSFP':
                 # QSFP capability byte parse, through this byte can know whether it support tx_power or not.
@@ -887,8 +877,6 @@ class Sfp(SfpBase):
                 eeprom.close()
                 time.sleep(0.01)
         
-        return True
-
     def tx_disable(self, tx_disable):
         """
         Disable SFP TX for all channels

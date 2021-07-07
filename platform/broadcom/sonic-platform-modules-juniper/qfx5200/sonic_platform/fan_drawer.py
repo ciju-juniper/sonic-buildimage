@@ -23,8 +23,8 @@ class FanDrawer(FanDrawerBase):
 
         FanDrawerBase.__init__(self)
         self.fantrayindex = fantray_index
-        self._fan_list.append(Fan(fantray_index, qfx5200_fans[fantray_index]['fan1'], False, 0))
-        self._fan_list.append(Fan(fantray_index, qfx5200_fans[fantray_index]['fan2'], False, 0))
+        self._fan_list.append(Fan(fantray_index, qfx5200_fans[fantray_index]['fan1'], False, 0)) #lgtm [py/call/wrong-number-class-arguments]
+        self._fan_list.append(Fan(fantray_index, qfx5200_fans[fantray_index]['fan2'], False, 0)) #lgtm [py/call/wrong-number-class-arguments]
 
     def get_name(self):
         """

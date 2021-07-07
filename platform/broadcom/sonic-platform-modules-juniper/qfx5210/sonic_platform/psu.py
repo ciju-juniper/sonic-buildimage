@@ -70,7 +70,7 @@ class Psu(PsuBase):
         self.i2c_addr = PSU_CPLD_I2C_MAPPING[self.index]["addr"]
         self.cpld_path = I2C_PATH.format(self.i2c_num, self.i2c_addr)
 
-        fan_node = Fan(0, 1, True, self.index)
+        fan_node = Fan(0, 1, True, self.index)  #lgtm [py/call/wrong-number-class-arguments]
         self._fan_list.append(fan_node)
 
     def get_voltage(self):

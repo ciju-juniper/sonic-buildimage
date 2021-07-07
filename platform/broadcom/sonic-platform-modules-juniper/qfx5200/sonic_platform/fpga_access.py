@@ -7,10 +7,6 @@
 #
 try:
     import os
-    import subprocess
-    import sys
-    import time
-    import syslog
     import glob
 except ImportError as e:
     raise ImportError(str(e) + "- required module not found")
