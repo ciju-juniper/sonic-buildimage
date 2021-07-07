@@ -241,7 +241,7 @@ class Chassis(ChassisBase):
         status, change_dict = sfp_detect()
         return status, change_dict
 
-        if timeout:
+        if timeout:  #lgtm [py/unreachable-statement]
             now_ms = time.time() * 1000
             if (now_ms - start_ms >= timeout):
                 return True, change_dict #lgtm [py/unreachable-statement]
